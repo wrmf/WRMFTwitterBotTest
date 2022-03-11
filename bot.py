@@ -10,8 +10,10 @@ access_token_secret = keys.access_token_secret
 authenticator = tweepy.OAuthHandler(api_key, api_key_secret)
 authenticator.set_access_token(access_token, access_token_secret)
 
-api = tweepy.api(authenticator)
+client = tweepy.Client(bearer_token=keys.bearer_token, access_token=access_token,
+                       access_token_secret=access_token_secret)
+users = client.get_users(usernames=["wrmf_", "profamymcgovern"])
+for n in users:
+    print(n)
 
-api.create_friendship('profamymcgovern')
-api.create_friendship('wrmf_')
-api.update_status('I am a bot designed by @wrmf_. Please do not message me, I do not currently support ')
+client.follow_user(target_user_id=1387140155149013002, user_auth=False)
