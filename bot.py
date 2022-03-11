@@ -2,18 +2,22 @@ import tweepy
 
 import keys
 
-api_key = keys.api_key
-api_key_secret = keys.api_key_secret
-access_token = keys.access_token
-access_token_secret = keys.access_token_secret
+API_KEY = '7xtFYya5kF9DMdhC9kwgSTKZs'
+API_SECRET = '2CRoBWpT8ketjLHH8G4gb9glSKhkDpApcBp7TdjK3bQlpgMv3A'
+BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAMiBaAEAAAAAhdoTx2hg%2BwDnllwKVVoMXBZ%2BU2Q%3DpOGn6A340G9i0yDtW9lgiB26FgUGUwA7LE9GboPadtBFkKQ6qI'
+ACCESS_TOKEN = 'ZTY3U2w0MmRkV2pwNnppM04yUzU6MTpjaQ'
+ACCESS_SECRET = '0VbmvmiLMLYavFQZK0syjDeDH4ZW6db9JOS6TKtS26qQANr3iQ'
 
-authenticator = tweepy.OAuthHandler(api_key, api_key_secret)
-authenticator.set_access_token(access_token, access_token_secret)
+#client = tweepy.Client(bearer_token=BEARER_TOKEN)
+client = tweepy.Client(
+    consumer_key=API_KEY,
+    consumer_secret=API_SECRET,
+    bearer_token=BEARER_TOKEN,
+    access_token=ACCESS_TOKEN,
+    access_token_secret=ACCESS_SECRET
+)
 
-client = tweepy.Client(bearer_token=keys.bearer_token, access_token=access_token,
-                       access_token_secret=access_token_secret)
-users = client.get_users(usernames=["wrmf_", "profamymcgovern"])
-for n in users:
-    print(n)
 
-client.follow_user(target_user_id=1387140155149013002, user_auth=False)
+
+client.follow_user(target_user_id=client.get_user(username="wrmf_"))
+client.create_tweet(text="test")
