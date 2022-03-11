@@ -1,10 +1,11 @@
 import tweepy
 
-all_keys = open('keys', 'r').read.splitlines()
-api_key = all_keys[0]
-api_key_secret = all_keys[1]
-access_token = all_keys[2]
-access_token_secret = all_keys[3]
+import keys
+
+api_key = keys.api_key
+api_key_secret = keys.api_key_secret
+access_token = keys.access_token
+access_token_secret = keys.access_token_secret
 
 authenticator = tweepy.OAuthHandler(api_key, api_key_secret)
 authenticator.set_access_token(access_token, access_token_secret)
